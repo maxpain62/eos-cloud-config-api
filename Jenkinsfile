@@ -38,16 +38,21 @@ spec:
             }
         }
         stage ('Sonar Scan'){
+          container('build') {
           sh 'sleep 5'
+          }
         }
 
 
         stage ('Artifactory configuration'){
+          container('build') {
           sh 'sleep 7'
+          }
         }
         stage ('Deploy Artifacts'){
           container('build') {
                 sh 'sleep 7'
+          }
        }
        stage ('Docker Build'){
           container('build') {
