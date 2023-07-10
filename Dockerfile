@@ -1,4 +1,4 @@
-FROM amazonlinux
+FROM amazonlinux:2
 MAINTAINER PR Reddy "trainings@edwiki.in"
 RUN yum install git -y
 
@@ -13,5 +13,5 @@ RUN chmod -R 700 /root/.ssh  && \
 
 RUN git clone git@github.com:dptrealtime/eos-cloud-config-repo.git  /etc/eos-cloud-config-repo
 RUN amazon-linux-extras install java-openjdk11 -y
-ADD target/server-0.0.1-SNAPSHOT.jar eos-cloud-config-api.jar
+ADD target/server-0.0.1-RELEASE.jar eos-cloud-config-api.jar
 CMD ["java","-jar","eos-cloud-config-api.jar"]

@@ -5,7 +5,7 @@ metadata:
   labels:
     app: eos-cloud-config-api
 spec:
-  replicas: 1
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
       app: eos-cloud-config-api
