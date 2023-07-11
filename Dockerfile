@@ -1,5 +1,6 @@
 FROM amazonlinux:2
 MAINTAINER PR Reddy "trainings@edwiki.in"
+RUN yum clean all
 RUN yum install git -y
 
 RUN mkdir /root/.ssh
