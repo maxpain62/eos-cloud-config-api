@@ -1,7 +1,7 @@
 FROM amazonlinux:2
 MAINTAINER PR Reddy "trainings@edwiki.in"
 RUN yum clean all
-RUN yum install git -y
+RUN rm -rf /var/cache/yum
 
 RUN mkdir /root/.ssh
 
