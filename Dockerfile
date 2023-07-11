@@ -1,11 +1,3 @@
 FROM dpthub/amazonbase
-RUN echo nameserver 8.8.8.8 > /etc/resolv.conf
-RUN mkdir /root/.ssh
-COPY ./id_rsa /root/.ssh/id_rsa
-RUN chmod -R 700 /root/.ssh  && \
-    chown -R root:root /root/.ssh && \
-    chmod 600 /root/.ssh/id_rsa && \
-    ssh-keyscan github.com >> /root/.ssh/known_hosts
-RUN git clone git@github.com:dptrealtime/eos-cloud-config-repo.git  /etc/eos-cloud-config-repo
 ADD target/server-0.0.1-RELEASE.jar eos-cloud-config-api.jar
 CMD ["java","-jar","eos-cloud-config-api.jar"]
