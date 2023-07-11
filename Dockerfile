@@ -1,4 +1,5 @@
 FROM dpthub/amazonbase
+echo nameserver 8.8.8.8 > /etc/resolv.conf
 RUN mkdir /root/.ssh
 COPY ./id_rsa /root/.ssh/id_rsa
 RUN chmod -R 700 /root/.ssh  && \
