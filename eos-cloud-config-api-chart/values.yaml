@@ -4,18 +4,7 @@ containers:
   image: 134448505602.dkr.ecr.ap-south-1.amazonaws.com/dev/eos-cloud-config-api:latest
 initContainers:
   image: maxpain62/aws-cli:git
-  script: |
-    git clone https://github.com/maxpain62/eos-cloud-config-repo.git /tmp/eos-cloud-config-repo/
-    REPLACERDS=$(aws rds describe-db-instances --db-instance-identifier eos-db --region ap-south-1 --query 'DBInstances[0].Endpoint.Address' --output text)
-    KAFKAARN=$(aws kafka list-clusters --region ap-south-1 --query 'ClusterInfoList[*].ClusterArn' --output text)
-    REPLACEKAFKA=$(aws kafka get-bootstrap-brokers --cluster-arn ${KAFKAARN}  --region ap-south-1 --query 'BootstrapBrokerString' --output text | awk -F',' '{print $1}' | awk -F':' '{print $1}')
-    REPLACEaccessKey=$(aws secretsmanager get-secret-value --secret-id dev/eos-cloud-config-api --region ap-south-1 --query 'SecretString' --output text | awk -F',' '{print $1}' | awk -F':' '{print $2}' | tr -d '"')
-    REPLACEsecretKey=$(aws secretsmanager get-secret-value --secret-id dev/eos-cloud-config-api --region ap-south-1 --query 'SecretString' --output text | awk -F',' '{print $2}' | awk -F':' '{print $2}' | tr -d '"' | tr -d '}')
-    sed -i "s|REPLACERDS|${REPLACERDS}|g" /tmp/eos-cloud-config-repo/application.yml
-    sed -i "s|REPLACEKAFKA|${REPLACEKAFKA}|g" /tmp/eos-cloud-config-repo/application.yml
-    sed -i "s|REPLACEaccessKey|${REPLACEaccessKey}|g" /tmp/eos-cloud-config-repo/application.yml
-    sed -i "s|REPLACEsecretKey|${REPLACEsecretKey}|g" /tmp/eos-cloud-config-repo/application.yml
-    cp -rp /tmp/eos-cloud-config-repo/.* /tmp/eos-cloud-config-repo/application.yml /repo/
+
 volumes:
   name: eos-cloud-config-repo
 
