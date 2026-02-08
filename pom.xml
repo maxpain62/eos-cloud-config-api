@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.org.proto.config</groupId>
-	<artifactId>server</artifactId>
+	<artifactId>cloud-config</artifactId>
 	<version>0.0.1-RELEASE</version>
-	<name>server</name>
+	<name>cloud-config</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -64,7 +64,13 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
+	<distributionManagement>
+  		<repository>
+    			<id>eos-eos-cloud-config-api</id>
+    			<name>eos-eos-cloud-config-api</name>
+    			<url>https://eos-134448505602.d.codeartifact.ap-south-1.amazonaws.com/maven/eos-cloud-config-api/</url>
+  		</repository>
+	</distributionManagement>
 	<build>
 		<plugins>
 			<plugin>
